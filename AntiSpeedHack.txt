@@ -1,0 +1,27 @@
+new oldSpeed[MAX_PLAYERS];
+
+
+
+
+// fresh
+		if(GetVehicleSpeed(GetPlayerVehicleID(playerid)) > oldSpeed[playerid] + 60 && !IsPlayerInRangeOfPoint(playerid, 20.0, oldPos[playerid][0], oldPos[playerid][1], oldPos[playerid][2]))
+		{
+			sendmes(playerid, "Tkven Gaikiket Serveridan #008 (speed hack)");
+	   		Kick(playerid);
+		}
+		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+		{
+			oldSpeed[playerid] = GetVehicleSpeed(GetPlayerVehicleID(playerid));
+		}
+
+
+// stocks
+stock GetVehicleSpeed(vehid)
+{
+	new Float:x, Float:y, Float:z, Float:speed;
+	if(GetVehicleVelocity(vehid, x, y, z))
+	{
+	    speed = floatsqroot((x * x) + (y * y) + (z * z) / 1.5) * 150.0;
+	}
+	return floatround(speed);
+}
